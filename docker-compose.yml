@@ -9,12 +9,12 @@ services:
     env_file:
       - .env
     labels:
-      - traefik.enable=true
-      - traefik.http.routers.cuf_website.rule=Host(`cuf.or.tz`)
-      - traefik.http.routers.cuf_website.entrypoints=websecure
-      - traefik.http.routers.cuf_website.tls.certresolver=production
-      - traefik.http.services.cuf_website.loadbalancer.server.port=8000
-      - com.centurylinklabs.watchtower.enable=true
+      - "traefik.enable=true"
+      - "traefik.http.routers.cuf_website.rule=Host(`cuf.or.tz`)"
+      - "traefik.http.routers.cuf_website.entrypoints=websecure"
+      - "traefik.http.routers.cuf_website.tls.certresolver=myresolver"
+      - "traefik.http.services.cuf_website.loadbalancer.server.port=8000"
+      - "com.centurylinklabs.watchtower.enable=true"
     networks:
       - zalongwa
 
@@ -30,7 +30,7 @@ services:
     command: --cleanup --interval 30 --label-enable
     networks:
       - zalongwa
-      
+
 networks:
   zalongwa:
     external: true

@@ -19,3 +19,13 @@ cp docker-compose.prod.yml docker-compose.yml
 
 docker compose up -d --build
 ```
+
+extra for temporary data backup
+
+```bash
+mkdir fixtures
+docker compose exec cuf_website python manage.py dumpdata admin_app --indent 4 > fixtures/admin_app.json
+docker compose exec cuf_website python manage.py dumpdata main_app --indent 4 > fixtures/main_app.json
+
+docker compose exec cuf_website python manage.py loaddata fixtures/user.json
+```

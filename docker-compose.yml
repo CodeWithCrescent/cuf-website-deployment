@@ -1,5 +1,5 @@
 services:
-  web:
+  cuf-web:
     container_name: cuf_website
     image: ghcr.io/zalongwa-technologies/cuf-website:main
     command: gunicorn cuf_project.wsgi:application --bind 0.0.0.0:8000
@@ -16,12 +16,11 @@ services:
       - "traefik.http.services.cuf_website.loadbalancer.server.port=8000"
       - "com.centurylinklabs.watchtower.enable=true"
     depends_on:
-      - cuf_db
+      - cuf-db
     networks:
-      - zalongwa
-      - internal
+      - cuf_bridge
 
-  cuf_db:
+  cuf-db:
     image: postgres:latest
     container_name: cuf_db
     restart: unless-stopped
@@ -47,12 +46,8 @@ services:
     environment:
       - DOCKER_CONFIG=/
     command: --cleanup --interval 30 --label-enable
-    networks:
-      - zalongwa
 
 networks:
-  zalongwa:
-    external: true
   cuf_bridge:
     driver: bridge
 

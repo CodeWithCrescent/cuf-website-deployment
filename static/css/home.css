@@ -1,0 +1,115 @@
+/* Party Leaders Carousel Styling */
+[data-leaders-carousel] {
+    position: relative;
+    padding-bottom: 2rem;
+  }
+  
+  /* Ensure consistent card dimensions */
+  .leader-card {
+    transition: opacity 0.5s ease-in, transform 0.5s ease-out;
+  }
+  
+  /* Cards that are hidden but still in the DOM */
+  .leader-card.absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    visibility: hidden;
+  }
+  
+  /* Indicators styling */
+  [data-leader-indicator] {
+    width: 0.75rem;
+    height: 0.75rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  [data-leader-indicator]:hover {
+    background-color: #FFD700 !important; /* cuf-yellow */
+  }
+  
+  /* Navigation buttons styling */
+  [data-leaders-prev],
+  [data-leaders-next] {
+    opacity: 0.8;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    z-index: 10;
+  }
+  
+  [data-leaders-prev]:hover,
+  [data-leaders-next]:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Ensure all cards have the same height */
+  .leader-card .group {
+    height: 450px !important;
+  }
+  
+  /* Ensure image sections have the same height */
+  .leader-card .group .image-section {
+    height: 250px !important;
+  }
+  
+  /* Smooth transitions */
+  .leader-card .group {
+    transition: transform 0.5s ease, border-color 0.3s ease;
+  }
+  
+  /* Hide scrollbars but keep functionality */
+  .scrollbar-hide {
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Chrome, Safari and Opera */
+  }
+  
+  /* Media query for mobile devices */
+  @media (max-width: 768px) {
+    /* Full width cards on mobile */
+    .leader-card {
+      width: 100% !important;
+    }
+    
+    /* Enhanced touch interaction for mobile */
+    .leader-card .group {
+      cursor: grab;
+    }
+    
+    .leader-card .group:active {
+      cursor: grabbing;
+    }
+    
+    /* Make nav buttons slightly larger on mobile for easier tapping */
+    [data-leaders-prev],
+    [data-leaders-next] {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    /* Mobile swipe indicator styling */
+    .flex.items-center.space-x-2 {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0% {
+        opacity: 0.7;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.7;
+      }
+    }
+  }

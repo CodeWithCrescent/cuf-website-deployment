@@ -18,7 +18,7 @@ services:
     depends_on:
       - cuf-db
     networks:
-      - cuf_bridge
+      - zalongwa
 
   cuf-db:
     image: postgres:latest
@@ -31,10 +31,11 @@ services:
     volumes:
       - cuf_data:/var/lib/postgresql/data
     networks:
-      - cuf_bridge
+      - zalongwa
     mem_limit: 512m
     cpus: 0.5
-
+    ports:
+      - "5445:5432"
 
   watchtower:
     image: containrrr/watchtower
@@ -48,8 +49,8 @@ services:
     command: --cleanup --interval 30 --label-enable
 
 networks:
-  cuf_bridge:
-    driver: bridge
+  zalongwa:
+    external: true
 
 volumes:
   cuf_data:

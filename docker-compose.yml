@@ -3,7 +3,6 @@ services:
     container_name: cuf_website
     image: ghcr.io/zalongwa-technologies/cuf-website:main
     command: gunicorn cuf_project.wsgi:application --bind 0.0.0.0:8000
-    # command: ['python', 'manage.py', 'runserver', '0.0.0.0:8000']
     volumes:
       - ./static/:/app/staticfiles
       - ./media:/app/media
@@ -19,7 +18,6 @@ services:
     networks:
       - zalongwa
 
-    
   watchtower:
     image: containrrr/watchtower
     container_name: watchtower__

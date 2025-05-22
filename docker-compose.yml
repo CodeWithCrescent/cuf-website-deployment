@@ -15,8 +15,27 @@ services:
       - "traefik.http.routers.cuf_website.tls.certresolver=myresolver"
       - "traefik.http.services.cuf_website.loadbalancer.server.port=8000"
       - "com.centurylinklabs.watchtower.enable=true"
+    depends_on:
+      - cuf_db
     networks:
       - zalongwa
+      - internal
+
+  cuf_db:
+    image: postgres:latest
+    container_name: cuf_db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - cuf_data:/var/lib/postgresql/data
+    networks:
+      - internal
+    mem_limit: 512m
+    cpus: 0.5
+
 
   watchtower:
     image: containrrr/watchtower
@@ -34,3 +53,8 @@ services:
 networks:
   zalongwa:
     external: true
+  internal:
+    driver: bridge
+
+volumes:
+  cuf_data:

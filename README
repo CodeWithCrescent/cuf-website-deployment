@@ -1,6 +1,7 @@
 # INSTRUCTIONS FOR DEPLOYMENT
 
 Make Sure you create database to existing postgres
+
 ```bash
 psql -U zalongwa -h localhost -p 5432 postgres
 

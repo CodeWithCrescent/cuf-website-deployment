@@ -10,7 +10,7 @@ services:
       - .env
     labels:
       - traefik.enable=true
-      - traefik.http.routers.cuf_website.rule=Host(`cuf.or.tz`)
+      - traefik.http.routers.cuf_website.rule=Host(`www.cuf.or.tz`) || Host(`www.cuf.saris.info.tz`)
       - traefik.http.routers.cuf_website.entrypoints=websecure
       - traefik.http.routers.cuf_website.tls.certresolver=production
       - traefik.http.services.cuf_website.loadbalancer.server.port=8000

@@ -1,12 +1,20 @@
 # INSTRUCTIONS FOR DEPLOYMENT
 
-Run:
+Make Sure you create database to existing postgres
+```bash
+psql -U zalongwa -h localhost -p 5432 postgres
+
+CREATE DATABASE cuf_db;
+
+\l
+```
+
+Update `SECRET_KEY` and `DEBUG` mode  in .env
+
 ```bash
 cp .env.example .env
 
 cp docker-compose.prod.yml docker-compose.yml
 
-docker compose build
-
-docker compose up -d
+docker compose up -d --build
 ```

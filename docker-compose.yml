@@ -32,7 +32,7 @@ services:
     volumes:
       - cuf_data:/var/lib/postgresql/data
     networks:
-      - internal
+      - cuf_bridge
     mem_limit: 512m
     cpus: 0.5
 
@@ -53,7 +53,7 @@ services:
 networks:
   zalongwa:
     external: true
-  internal:
+  cuf_bridge:
     driver: bridge
 
 volumes:

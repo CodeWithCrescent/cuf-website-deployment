@@ -28,6 +28,8 @@ services:
     environment:
       - DOCKER_CONFIG=/
     command: --cleanup --interval 30 --label-enable
+    networks:
+      - zalongwa
 
 networks:
   zalongwa:

@@ -1,0 +1,32 @@
+# Python virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*/__pycache__/
+*/*/__pycache__/
+*/*/*/__pycache__/
+
+# VSCode settings
+.vscode/
+
+# Environment variables
+.env
+
+# SQLite database
+*.sqlite3
+
+# Django media and static
+media/
+staticfiles/
+
+# Docker-related
+*.log
+*.pid
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# macOS system files
+.DS_Store

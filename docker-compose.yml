@@ -1,0 +1,35 @@
+services:
+  web:
+    container_name: cuf_website
+    image: ghcr.io/zalongwa-technologies/cuf-website:main
+    command: gunicorn cuf_project.wsgi:application --bind 0.0.0.0:8000
+    volumes:
+      - ./static/:/app/staticfiles
+      - ./media:/app/media
+    env_file:
+      - .env
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.web.rule=Host(`cuf.or.tz`)
+      - traefik.http.routers.web.entrypoints=websecure
+      - traefik.http.routers.web.tls.certresolver=production
+      - traefik.http.services.web.loadbalancer.server.port=8000
+      - com.centurylinklabs.watchtower.enable=true
+    networks:
+      - zalongwa
+
+    
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower__
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json
+    environment:
+      - DOCKER_CONFIG=/
+    command: --cleanup --interval 30 --label-enable
+
+networks:
+  zalongwa:
+    external: true
